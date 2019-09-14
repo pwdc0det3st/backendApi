@@ -1,0 +1,24 @@
+{
+  "name": "poweredlocaltest",
+  "version": "1.0.0",
+  "description": "A lambda function, that act as a backend controller. It registers customer prospects from a form into mail chimp audience.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pwdc0det3st/backendApi.git"
+  },
+  "author": "Adil Rafique",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pwdc0det3st/backendApi/issues"
+  },
+  "homepage": "https://github.com/pwdc0det3st/backendApi#readme",
+  "dependencies": {
+    "aws-xray-sdk": "^2.3.6",
+    "dotenv": "^8.1.0",
+    "mailchimp-api-v3": "^1.13.1"
+  }
+}
