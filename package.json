@@ -17,8 +17,6 @@
   },
   "homepage": "https://github.com/pwdc0det3st/backendApi#readme",
   "dependencies": {
-    "aws-xray-sdk": "^2.3.6",
-    "dotenv": "^8.1.0",
     "mailchimp-api-v3": "^1.13.1"
   }
 }

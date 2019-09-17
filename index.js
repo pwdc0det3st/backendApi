@@ -3,13 +3,13 @@ const Mailchimp = require('mailchimp-api-v3');
 const API_KEY = 'fed589b1954a061fec584cce7a066cc8-us4',
     LIST_ID = '38cd255891';
 
-return function addProspectToList(prospect) {
+async function addProspectToList(prospect) {
     var mailchimp = new Mailchimp(API_KEY);
-    mailchimp.request({
+    return mailchimp.request({
         method: 'post',
         path: '/lists/' + LIST_ID + '/members',
         body: {
-            email_address: prospect.emailAddress,
+            email_address: prospect.email,
             merge_fields : {
                 FNAME : prospect.firstName,
                 LNAME : prospect.lastName,
@@ -23,16 +23,23 @@ return function addProspectToList(prospect) {
 }
 
 
-exports.handler = function (event, context, callback) {
-    const responce = {};
-    await addToList(emailAddress)
+exports.handler = async (event, context, callback) => {
+    const responce = {
+    };
+    const prospect = JSON.parse(event.body);
+    console.log(prospect);
+    await addProspectToList(prospect)
     .then(results => {
-        responce.status = 200;
-        responce.message = 'Prospect Succsfully Added';
+        responce.statusCode = 200;
+        responce.body = JSON.stringify({
+            message : 'Prospect Succsfully Added'
+        });
     })
     .catch(error => {
-        responce.status = error.statusCode,
-        responce.message = error.title == 'Member Exists'? error.title : 'Something went wrong'
+        responce.statusCode = error.statusCode,
+        responce.body = JSON.stringify({
+            message :  error.title == 'Member Exists'? error.title : 'Something went wrong'
+        })
     })
     return responce;
 
